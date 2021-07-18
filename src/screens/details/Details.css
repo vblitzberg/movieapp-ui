@@ -1,0 +1,39 @@
+.back {
+    margin: 8px 0px 0px 24px;
+    text-decoration: none;
+    color: unset;
+}
+
+.back:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+}
+
+.left-section {
+    width: 20%;
+}
+
+.middle-section {
+    width: 60%;
+}
+
+.right-section {
+    width: 20%;
+}
+
+.margin-top-16px {
+    margin-top: 16px;
+}
+
+.artist-list {
+    margin: 0px !important;
+}
+
+.poster {
+    max-width: 99%;
+    margin: 0px auto;
+    display: flex;
+}
