@@ -1,8 +1,8 @@
 .heading{
     background-color: #ff9999;
+    padding: 8px;
 }   
 .heading-label {   
-    padding: 8px;
     text-align: center;
     font-size: 1rem;
 }

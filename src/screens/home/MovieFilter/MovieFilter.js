@@ -50,26 +50,24 @@ const MovieFilter = ({ genres, artists, allMovies, setFilteredMovies, classes })
 
     const applyFilterButtonHandler = () => {
         const queryStringOptions = ['status=RELEASED'];
-        console.log('movieNameFilter', movieNameFilter);
+
         if (movieNameFilter.length > 0)
             queryStringOptions.push("title=" + movieNameFilter);
 
-        console.log('movieGenreFilter', movieGenreFilter);
         if (movieGenreFilter.length > 0)
             queryStringOptions.push("genre=" + movieGenreFilter.join(', '));
 
-        console.log('movieArtistFilter', movieArtistFilter);
         if (movieArtistFilter.length > 0)
             queryStringOptions.push("artists=" + movieArtistFilter.join(', '));
 
-        console.log('movieReleaseStartFilter', movieReleaseStartFilter);
         if (movieReleaseStartFilter.length > 0)
             queryStringOptions.push("start_date=" + movieReleaseStartFilter);
 
-        console.log('movieReleaseEndFilter', movieReleaseEndFilter);
         if (movieReleaseEndFilter.length > 0)
             queryStringOptions.push("end_date=" + movieReleaseEndFilter);
+
         const queryStr = `http://localhost:8085/api/v1/movies?${encodeURI(queryStringOptions.join('&'))}`
+
         fetch(queryStr, {
             method: "GET",
             headers: {

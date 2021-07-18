@@ -24,6 +24,7 @@ const Details = (props) => {
     }, []);
 
 
+
     return movieDetails === undefined ? null : (
         <React.Fragment>
             <Header onReleasedMoviePage={true} movieID={id} {...props} />

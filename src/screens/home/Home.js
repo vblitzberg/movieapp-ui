@@ -13,7 +13,7 @@ const Home = (props) => {
   const [artists, setArtists] = useState([]);
   //Get All Upcoming Movies
   useEffect(() => {
-    fetch(`${props.baseUrl}/movies?page=1&status=PUBLISHED`, {
+    fetch(`${props.baseUrl}/movies?page=1&status=PUBLISHED&limit=6`, {
       method: "GET",
       headers: {
         "Accept": "application/json;charset=UTF-8"
@@ -58,7 +58,7 @@ const Home = (props) => {
 
   //Get All Movie Genres
   useEffect(() => {
-    fetch(`${props.baseUrl}/genres`, {
+    fetch(`${props.baseUrl}/genres?limit=100`, {
       method: "GET",
       headers: {
         "Accept": "application/json;charset=UTF-8"
@@ -74,7 +74,7 @@ const Home = (props) => {
 
   //Get All Artists
   useEffect(() => {
-    fetch(`${props.baseUrl}/artists`, {
+    fetch(`${props.baseUrl}/artists?limit=100`, {
       method: "GET",
       headers: {
         "Accept": "application/json;charset=UTF-8"
@@ -99,7 +99,7 @@ const Home = (props) => {
       <div className="heading">
         <div className="heading-label">Upcoming Movies</div>
       </div>
-      <GridList cols={6} className="upcoming-movies">
+      <GridList cols={5}  cellHeight={250} className="upcoming-movies">
         {upcomingMovies.map(movie => {
           return (
             <GridListTile key={`movie${movie.id}`}>

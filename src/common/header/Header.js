@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Header.css'
 import logo from '../../assets/logo.svg'
 import Button from "@material-ui/core/Button";
-import SessionModal from '../SessionModal/SessionModal'; 
+import SessionModal from '../SessionModal/SessionModal';
 
 
 const Header = ({ onReleasedMoviePage, ...props }) => {
@@ -39,7 +39,7 @@ const Header = ({ onReleasedMoviePage, ...props }) => {
         <div className="header">
             <img className="logo-icon" src={logo} alt="BookMyMovie"></img>
             <div className="header-buttons">
-                {onReleasedMoviePage ? <Button variant="contained" style={{ marginRight: '5px' }} color="primary" onClick={bookShowButtonHandler}>Book Show</Button> : null}
+                {onReleasedMoviePage ? <Button variant="contained" color="primary" style={{ marginRight: '5px' }} onClick={bookShowButtonHandler}>Book Show</Button> : null}
                 <React.Fragment>
                     {userLoggedIn ?
                         <Button variant="contained" color="default" onClick={logoutHandler}>Logout</Button>
