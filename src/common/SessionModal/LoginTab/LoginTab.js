@@ -25,7 +25,6 @@ const LoginTab = ({ setUserLoggedIn, closeModal, ...props }) => {
                 setMessage((await response.json()).message)
             }
         })
-            .catch((response) => console.log(response))
     }
     return (
         <form className="tab-container" onSubmit={(e) => { e.preventDefault(); loginButtonHandler(); }}>

@@ -19,13 +19,11 @@ const RegisterTab = (props) => {
             "mobile_number": contact,
             "password": password
         });
-        console.log(data);
         fetch(`${props.baseUrl}/signup`, {
             method: 'POST',
             body: data,
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         }
         ).then(async (response) => {
