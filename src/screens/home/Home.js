@@ -4,8 +4,7 @@ import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import "./Home.css";
-
-
+import MovieFilter from './MovieFilter/MovieFilter'
 
 const Home = (props) => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -128,7 +127,7 @@ const Home = (props) => {
           </GridList></section>
 
         <section className="filter-movies-section">
-          
+          <MovieFilter allMovies={releasedMovies} setFilteredMovies={setReleasedMovies} genres={genres} artists={artists} />
         </section>
       </main>
     </React.Fragment>
