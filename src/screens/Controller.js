@@ -3,6 +3,7 @@ import Home from './home/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Details from './details/Details';
 import BookShow from './bookshow/BookShow';
+import Confirmation from './confirmation/Confirmation'
 export default class Controller extends React.Component {
 
     baseUrl = 'http://localhost:8085/api/v1/';
@@ -14,6 +15,7 @@ export default class Controller extends React.Component {
                     <Route exact path="/" render={(props) => (<Home {...props} baseUrl={this.baseUrl} />)} />
                     <Route path="/movie/:id" render={(props) => (<Details {...props} baseUrl={this.baseUrl} />)} />
                     <Route path="/book/:id" render={(props) => (<BookShow {...props} baseUrl={this.baseUrl} />)} />
+                    <Route path="/confirm/:id" render={(props) => (<Confirmation {...props} baseUrl={this.baseUrl} />)} />
                 </React.Fragment>
             </Router>
         )
