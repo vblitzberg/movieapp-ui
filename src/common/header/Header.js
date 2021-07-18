@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Header.css'
 import logo from '../../assets/logo.svg'
 import Button from "@material-ui/core/Button";
+import SessionModal from '../SessionModal/SessionModal'; 
 
 
 const Header = ({ onReleasedMoviePage, ...props }) => {
@@ -9,17 +10,29 @@ const Header = ({ onReleasedMoviePage, ...props }) => {
         const userInStorage = sessionStorage.getItem('user') ? true : false;
         return userInStorage;
     }
-    const [userLoggedIn, updateUserLoggedIn] = useState(getUserInfoFromSessionStorage());    
+    const [userLoggedIn, updateUserLoggedIn] = useState(getUserInfoFromSessionStorage());
+    const [sessionModalIsOpen, setSessionModalIsOpen] = useState(false);
+
+    const openSessionModal = () => setSessionModalIsOpen(true);
+    const closeSessionModal = () => setSessionModalIsOpen(false);
+
+    function setUserLoggedIn(value) {
+        sessionStorage.setItem('user', value);
+        updateUserLoggedIn(value);
+    }
 
     const loginHandler = () => {
-        
+        openSessionModal();
     }
     const logoutHandler = () => {
         sessionStorage.removeItem('user');
         updateUserLoggedIn(false);
     }
     const bookShowButtonHandler = () => {
-        
+        if (userLoggedIn)
+            props.history.push(`/book/${props.movieID}`);
+        else
+            openSessionModal();
     }
 
     return (
@@ -33,7 +46,7 @@ const Header = ({ onReleasedMoviePage, ...props }) => {
                         :
                         <Button variant="contained" color="default" onClick={loginHandler}>Login</Button>
                     }
-                    
+                    <SessionModal isModelOpen={sessionModalIsOpen} closeModal={closeSessionModal} setUserLoggedIn={setUserLoggedIn}  {...props} />
                 </React.Fragment>
             </div>
         </div>
