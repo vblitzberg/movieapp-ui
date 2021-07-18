@@ -1,0 +1,30 @@
+.heading{
+    background-color: #ff9999;
+}   
+.heading-label {   
+    padding: 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+ .upcoming-movies{
+    overflow-x:scroll;
+    flex-wrap: nowrap !important;
+    margin: -2px 0 0 0 !important;
+}
+.main-movies-section{
+    display: flex;
+}
+.movies-released-section{
+    width: 76%;
+    margin:16px;
+}
+.filter-movies-section{
+    width: 24%;
+    margin:16px;
+}
+.released-movies{
+    margin: -2px 0 0 0 !important;
+}
+.released-movie-tile:hover{
+    cursor: pointer;
+}
