@@ -5,12 +5,18 @@ import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import "./Home.css";
 import MovieFilter from './MovieFilter/MovieFilter'
-
+/**
+ * This file contains code for generating the homepage of the application
+ *
+ * @param {*} props expects baseUrl to be sent as props
+ * @returns home page of the book movie application
+ */
 const Home = (props) => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [releasedMovies, setReleasedMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [artists, setArtists] = useState([]);
+
   //Get All Upcoming Movies
   useEffect(() => {
     fetch(`${props.baseUrl}/movies?page=1&status=PUBLISHED&limit=6`, {
@@ -88,6 +94,7 @@ const Home = (props) => {
       .then(artists => setArtists(artists))
   }, []);
 
+  //Redirect to details view of the given movie on click of tile.
   const movieTileClickHandler = (id) => {
     props.history.push(`/movie/${id}`);
   }
@@ -95,11 +102,15 @@ const Home = (props) => {
   return (
 
     <React.Fragment>
+      {/* Header */}
       <Header onReleasedMoviePage={false} {...props} />
+      
+      {/* Upcoming Movies */}
       <div className="heading">
         <div className="heading-label">Upcoming Movies</div>
       </div>
-      <GridList cols={5}  cellHeight={250} className="upcoming-movies">
+      <GridList cols={5} cellHeight={250} className="upcoming-movies">
+        {/* Transform movie object array to grid tiles */}
         {upcomingMovies.map(movie => {
           return (
             <GridListTile key={`movie${movie.id}`}>
@@ -110,22 +121,28 @@ const Home = (props) => {
           )
         })}
       </GridList>
+      
       <main className="main-movies-section">
+        
+        {/* Released Movies */}
         <section className="movies-released-section">
           <GridList cols={4} cellHeight={350} className="released-movies">
+            
+            {/* Transform movie object array to grid tiles */}
             {releasedMovies.map(movie => {
               return (
                 <GridListTile className="released-movie-tile" onClick={() => {
                   movieTileClickHandler(movie.id);
                 }}
                   key={`movie${movie.id}`}>
-                  <img src={movie.posterURL} alt={movie.title}/>
+                  <img src={movie.posterURL} alt={movie.title} />
                   <GridListTileBar title={movie.title} subtitle={`Release Date: ${movie.releaseDate}`} />
                 </GridListTile>
               )
             })}
           </GridList></section>
-
+        
+        {/* Filter Criteria */}
         <section className="filter-movies-section">
           <MovieFilter allMovies={releasedMovies} setFilteredMovies={setReleasedMovies} genres={genres} artists={artists} />
         </section>

@@ -24,7 +24,16 @@ const styles = (theme) => ({
         color: theme.palette.primary.light
     }
 });
-const MovieFilter = ({ genres, artists, allMovies, setFilteredMovies, classes }) => {
+/**
+ * This function creates the movie filter module component for homepage.
+ *
+ * @param {*} genres a list of genres to appear in filter
+ * @param {*} artists a list of artists to appear in filter
+ * @param {*} setFilteredMovies event handler to update on movie list on homepage
+ * @param {*} classes styling to be applied.
+ * @returns movie filter UI component JSX
+ * */
+const MovieFilter = ({ genres, artists, setFilteredMovies, classes }) => {
 
     const [movieNameFilter, setMovieNameFilter] = useState('');
     const [movieGenreFilter, setMovieGenreFilter] = useState([]);
@@ -48,6 +57,8 @@ const MovieFilter = ({ genres, artists, allMovies, setFilteredMovies, classes })
         setMovieReleaseEndFilter(event.target.value);
     }
 
+
+    // Build query parameters to filter omvies.
     const applyFilterButtonHandler = () => {
         const queryStringOptions = ['status=RELEASED'];
 

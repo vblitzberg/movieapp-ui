@@ -18,6 +18,16 @@ const modalStyle = {
 };
 
 Modal.setAppElement('#root');
+
+/**
+ * This function creates a component to render a modal for login/register
+ *
+ * @param {*} isModelOpen status of modal - open/close
+ * @param {*} closeModal handler to close modal
+ * @param {*} setUserLoggedIn handler to change user login status.
+ * @param {*} baseUrl baseUrl for backend endpoint
+ * @returns modal JSX for login/register functionality.
+ */
 const SessionModal = ({ isModelOpen, closeModal, setUserLoggedIn, ...props }) => {
     const [currentTab, setCurrentTab] = React.useState(0);
     const handleTabChange = (event, newValue) => {
@@ -33,9 +43,13 @@ const SessionModal = ({ isModelOpen, closeModal, setUserLoggedIn, ...props }) =>
                 <Tab label="Login" value={0} />
                 <Tab label="Register" value={1} />
             </Tabs>
+
+            {/* Login Tab */}
             <TabPanel value={currentTab} index={0} >
                 <LoginTab setUserLoggedIn={setUserLoggedIn} closeModal={closeModal} baseUrl={props.baseUrl} />
             </TabPanel>
+
+            {/* Register Tab */}
             <TabPanel value={currentTab} index={1}>
                 <RegisterTab baseUrl={props.baseUrl} />
             </TabPanel>

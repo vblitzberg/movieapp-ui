@@ -5,12 +5,18 @@ import YouTube from "react-youtube";
 import Header from '../../common/header/Header'
 import "./Details.css";
 import StarBorder from '@material-ui/icons/StarBorder'
-
+/**
+ * This method creates the details view for a particular movie.
+ * 
+ * @param {*} props - requires match and baseUrl to be passed as props.
+ * @returns details UI component JSX
+ */
 const Details = (props) => {
     const id = props.match.params.id;
     const [movieDetails, setMovieDetails] = useState(undefined);
     const [rating, setRating] = useState(0);
 
+    //get movie details from backend.
     useEffect(() => {
 
         fetch(`${props.baseUrl}/movies/${id}`, {
@@ -23,11 +29,15 @@ const Details = (props) => {
             .then(movie => setMovieDetails(movie))
     }, []);
 
-
+    const redirectToBookShow = () => {
+        props.history.push(`/book/${id}`);
+    }
 
     return movieDetails === undefined ? null : (
         <React.Fragment>
-            <Header onReleasedMoviePage={true} movieID={id} {...props} />
+            {/* Header */}
+            <Header onReleasedMoviePage={true} redirectToBookShow={redirectToBookShow} {...props} />
+            {/* Back Link */}
             <Typography>
                 <Link to={"/"} className="back">
                     &#60; Back to Home
@@ -35,9 +45,12 @@ const Details = (props) => {
             </Typography>
 
             <main className="container">
+                {/* Poster section */}
                 <section className="left-section">
                     <img className="poster" src={movieDetails.poster_url} alt={movieDetails.title} />
                 </section>
+
+                {/* Main Details section*/}
                 <section className="middle-section">
                     <Typography variant="headline" component="h2">{movieDetails.title}
                     </Typography>
@@ -67,9 +80,8 @@ const Details = (props) => {
                     </Typography>
                     <br />
                     <YouTube videoId={movieDetails.trailer_url.substring(movieDetails.trailer_url.indexOf('v=') + 2)}></YouTube>
-
-
                 </section>
+                {/* Artists & Ratin section*/}
                 <section className="right-section">
                     <Typography>
                         <span style={{ fontWeight: "bold" }}>Rate this movie: </span><br />
@@ -80,6 +92,7 @@ const Details = (props) => {
                         <StarBorder style={{ color: rating > 4 ? "yellow" : "black" }} onClick={() => { rating === 5 ? setRating(0) : setRating(5) }}></StarBorder>
                     </Typography>
                     <br />
+                    {/* Transform artist objects to grid tiles. */}
                     <GridList cols={2} className="margin-top-16px artist-list">
                         {movieDetails.artists.map(artist => {
                             return (

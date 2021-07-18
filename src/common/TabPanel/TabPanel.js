@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+/**
+ * This method is a wrapper to create a tab panel with provided children.
+ *
+ * @param {*} children children to render inside tab panel
+ * @param {*} value value for current tab
+ * @param {*} index index of current tab
+ * @returns a tab panel with provided children elements.
+ */
+function TabPanel({ children, value, index }) {
     return (
         <div
             role="tabpanel"
             hidden={value !== index}
             id={`wrapped-tabpanel-${index}`}
             aria-labelledby={`wrapped-tab-${index}`}
-            {...other}
         >
             {value === index && (
                 <React.Fragment>
